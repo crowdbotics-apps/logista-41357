@@ -23,9 +23,11 @@ const AppInfoScreen = () => {
       }}><Text style={styles.loginButtonText}>Log In</Text></Pressable>
       </TouchableOpacity>
       <View style={styles.linksContainer}>
-        <Text style={styles.linkText} onPress={() => Linking.openURL('https://www.example.com/terms')}>
+        <Pressable onPress={() => {
+        navigation.navigate("ScreenAI5");
+      }}><Text style={styles.linkText} onPress={() => Linking.openURL('https://www.example.com/terms')}>
           Terms and Conditions
-        </Text>
+        </Text></Pressable>
         <Text style={styles.linkText} onPress={() => Linking.openURL('https://www.example.com/privacy')}>
           Privacy Policy
         </Text>
