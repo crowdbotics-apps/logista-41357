@@ -1,7 +1,10 @@
+import { useNavigation } from "@react-navigation/native";
+import { Pressable } from "react-native";
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList } from 'react-native';
 
 const SiteDetails = () => {
+  const navigation = useNavigation();
   const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState('Activity Log');
   const site = {
@@ -26,7 +29,9 @@ const SiteDetails = () => {
         <Text style={styles.siteInfo}>{site.address}</Text>
         <Text style={styles.siteInfo}>{site.contact}</Text>
         <TouchableOpacity style={styles.mapButton}>
-          <Text style={styles.mapButtonText}>Display on map</Text>
+          <Pressable onPress={() => {
+          navigation.navigate("ScreenAI9");
+        }}><Text style={styles.mapButtonText}>Display on map</Text></Pressable>
         </TouchableOpacity>
       </View>
       <TextInput style={styles.searchBar} onChangeText={setSearch} value={search} placeholder="Search" />
