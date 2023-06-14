@@ -1,28 +1,79 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Button } from 'react-native';
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Button, TextInput, FlatList } from "react-native";
 
 const Tab = ({
   title,
   isActive,
   onPress
 }) => <TouchableOpacity style={[styles.tab, isActive && styles.activeTab]} onPress={onPress}>
-    <Text style={[styles.tabText, isActive && styles.activeTabText]}>{title}</Text>
+    <Text style={[styles.tabText, isActive && styles.activeTabText]}>
+      {title}
+    </Text>
+  </TouchableOpacity>;
+
+const SiteItem = ({
+  name,
+  location,
+  onPress
+}) => <TouchableOpacity style={styles.siteItem} onPress={onPress}>
+    <Text style={styles.siteName}>{name}</Text>
+    <Text style={styles.siteLocation}>{location}</Text>
   </TouchableOpacity>;
 
 const App = () => {
-  const [activeTab, setActiveTab] = useState('Site overview');
+  const [activeTab, setActiveTab] = useState("Site overview");
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState({
+    location: "",
+    name: "",
+    status: ""
+  });
+  const sites = [{
+    id: 1,
+    name: "Site 1",
+    location: "Location 1",
+    status: "operational"
+  }, {
+    id: 2,
+    name: "Site 2",
+    location: "Location 2",
+    status: "critical"
+  }, {
+    id: 3,
+    name: "Site 3",
+    location: "Location 3",
+    status: "pending"
+  }];
   return <SafeAreaView style={styles.container}>
       <View style={styles.tabsContainer}>
-        <Tab title="Site overview" isActive={activeTab === 'Site overview'} onPress={() => setActiveTab('Site overview')} />
-        <Tab title="Users accounts" isActive={activeTab === 'Users accounts'} onPress={() => setActiveTab('Users accounts')} />
-        <Tab title="Partner records" isActive={activeTab === 'Partner records'} onPress={() => setActiveTab('Partner records')} />
-        <Tab title="Consumable and Asset Records" isActive={activeTab === 'Consumable and Asset Records'} onPress={() => setActiveTab('Consumable and Asset Records')} />
+        <Tab title="Site overview" isActive={activeTab === "Site overview"} onPress={() => setActiveTab("Site overview")} />
+        <Tab title="Users accounts" isActive={activeTab === "Users accounts"} onPress={() => setActiveTab("Users accounts")} />
+        <Tab title="Partner records" isActive={activeTab === "Partner records"} onPress={() => setActiveTab("Partner records")} />
+        <Tab title="Consumable and Asset Records" isActive={activeTab === "Consumable and Asset Records"} onPress={() => setActiveTab("Consumable and Asset Records")} />
       </View>
-      <View style={styles.contentContainer}>
-        <Text style={styles.contentText}>{activeTab}</Text>
-      </View>
+      {activeTab === "Site overview" && <View style={styles.siteOverviewContainer}>
+          <TextInput style={styles.searchBar} onChangeText={setSearch} value={search} placeholder="Search" />
+          <View style={styles.filtersContainer}>
+            <TextInput style={styles.filterInput} onChangeText={text => setFilter({ ...filter,
+          location: text
+        })} value={filter.location} placeholder="Location" />
+            <TextInput style={styles.filterInput} onChangeText={text => setFilter({ ...filter,
+          name: text
+        })} value={filter.name} placeholder="Name" />
+            <TextInput style={styles.filterInput} onChangeText={text => setFilter({ ...filter,
+          status: text
+        })} value={filter.status} placeholder="Status" />
+          </View>
+          <FlatList data={sites} renderItem={({
+        item
+      }) => <SiteItem name={item.name} location={item.location} onPress={() => alert(`Clicked on ${item.name}`)} />} keyExtractor={item => item.id.toString()} />
+          <View style={styles.paginationContainer}>
+            <Button title="Previous" onPress={() => alert("Previous page")} />
+            <Button title="Next" onPress={() => alert("Next page")} />
+          </View>
+        </View>}
       <View style={styles.buttonContainer}>
-        <Button title="New account" onPress={() => alert('New account')} />
+        <Button title="New account" onPress={() => alert("New account")} />
       </View>
     </SafeAreaView>;
 };
@@ -30,37 +81,74 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5'
+    backgroundColor: "#F5F5F5"
   },
   tabsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: '#FFFFFF',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    backgroundColor: "#FFFFFF",
     borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0'
+    borderBottomColor: "#E0E0E0"
   },
   tab: {
     paddingVertical: 12
   },
   activeTab: {
     borderBottomWidth: 2,
-    borderBottomColor: '#6200EE'
+    borderBottomColor: "#6200EE"
   },
   tabText: {
     fontSize: 16,
-    color: '#757575'
+    color: "#757575"
   },
   activeTabText: {
-    color: '#6200EE'
+    color: "#6200EE"
   },
-  contentContainer: {
+  siteOverviewContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    paddingHorizontal: 16
   },
-  contentText: {
-    fontSize: 24,
-    color: '#212121'
+  searchBar: {
+    borderWidth: 1,
+    borderColor: "#E0E0E0",
+    borderRadius: 4,
+    padding: 8,
+    marginBottom: 8
+  },
+  filtersContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 8
+  },
+  filterInput: {
+    borderWidth: 1,
+    borderColor: "#E0E0E0",
+    borderRadius: 4,
+    padding: 8,
+    flex: 1,
+    marginRight: 8
+  },
+  siteItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 16,
+    backgroundColor: "#FFFFFF",
+    borderBottomWidth: 1,
+    borderBottomColor: "#E0E0E0"
+  },
+  siteName: {
+    fontSize: 16,
+    color: "#212121"
+  },
+  siteLocation: {
+    fontSize: 14,
+    color: "#757575"
+  },
+  paginationContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 8
   },
   buttonContainer: {
     paddingHorizontal: 16,
