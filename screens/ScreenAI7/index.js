@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { Pressable } from "react-native";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Button, TextInput, FlatList, Image } from "react-native";
@@ -28,6 +29,7 @@ const SiteItem = ({
   </TouchableOpacity>;
 
 const App = () => {
+  const navigation = useNavigation();
   const [activeTab, setActiveTab] = useState("Site overview");
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState({
@@ -81,9 +83,11 @@ const App = () => {
           <TouchableOpacity style={styles.notificationIcon} onPress={() => alert("Notification clicked")}>
             <Image source={require("./path/to/notification/icon.png")} style={styles.iconImage} />
           </TouchableOpacity>
-        </View>}
+        <Pressable onPress={() => {
+        navigation.navigate("ScreenAI16");
+      }}><Text style={styles.fbyDFDdn}>{"Notification"}</Text></Pressable></View>}
       <View style={styles.buttonContainer}>
-        <Button title="New account" onPress={() => alert("New account")} />
+        <Button title="Create notification" onPress={() => alert("New account")} />
       </View>
     </SafeAreaView>;
 };
@@ -116,7 +120,9 @@ const styles = StyleSheet.create({
   },
   siteOverviewContainer: {
     flex: 1,
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+    width: 1436,
+    height: 797
   },
   searchBar: {
     borderWidth: 1,
@@ -172,6 +178,13 @@ const styles = StyleSheet.create({
   iconImage: {
     width: 24,
     height: 24
+  },
+  fbyDFDdn: {
+    width: 100,
+    height: 50,
+    lineHeight: 14,
+    fontSize: 14,
+    borderRadius: 0
   }
 });
 export default App;
