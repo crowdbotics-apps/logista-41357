@@ -86,9 +86,11 @@ const App = () => {
         <Pressable onPress={() => {
         navigation.navigate("ScreenAI16");
       }}><Text style={styles.fbyDFDdn}>{"Notification"}</Text></Pressable></View>}
-      <View style={styles.buttonContainer}>
+      <Pressable onPress={() => {
+      navigation.navigate("ScreenAI17");
+    }}><View style={styles.buttonContainer}>
         <Button title="Create notification" onPress={() => alert("New account")} />
-      </View>
+      </View></Pressable>
     </SafeAreaView>;
 };
 
