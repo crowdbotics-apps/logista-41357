@@ -91,7 +91,9 @@ const App = () => {
     }}><View style={styles.buttonContainer}>
         <Button title="Create notification" onPress={() => alert("New account")} />
       </View></Pressable>
-    </SafeAreaView>;
+    <Pressable onPress={() => {
+      navigation.navigate("ScreenAI18");
+    }}><Text style={styles.odsXbWpe}>{"Settings"}</Text></Pressable></SafeAreaView>;
 };
 
 const styles = StyleSheet.create({
@@ -182,6 +184,13 @@ const styles = StyleSheet.create({
     height: 24
   },
   fbyDFDdn: {
+    width: 100,
+    height: 50,
+    lineHeight: 14,
+    fontSize: 14,
+    borderRadius: 0
+  },
+  odsXbWpe: {
     width: 100,
     height: 50,
     lineHeight: 14,
