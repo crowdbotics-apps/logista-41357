@@ -1,16 +1,23 @@
+import { useNavigation } from "@react-navigation/native";
+import { Pressable } from "react-native";
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 const SettingsScreen = () => {
+  const navigation = useNavigation();
   return <View style={styles.container}>
       <Image style={styles.logo} source={{
       uri: 'https://tinyurl.com/42evm3m3'
     }} />
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Privacy Policy</Text>
+        <Pressable onPress={() => {
+        navigation.navigate("ScreenAI6");
+      }}><Text style={styles.buttonText}>Privacy Policy</Text></Pressable>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Terms and Conditions</Text>
+        <Pressable onPress={() => {
+        navigation.navigate("ScreenAI5");
+      }}><Text style={styles.buttonText}>Terms and Conditions</Text></Pressable>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Change Password</Text>
