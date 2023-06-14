@@ -21,7 +21,9 @@ const LoginScreen = () => {
       <TextInput style={styles.input} onChangeText={setUsername} value={username} placeholder="Username" />
       <TextInput style={styles.input} onChangeText={setPassword} value={password} placeholder="Password" secureTextEntry />
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.loginButtonText}>Log In</Text>
+        <Pressable onPress={() => {
+        navigation.navigate("ScreenAI7");
+      }}><Text style={styles.loginButtonText}>Log In</Text></Pressable>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleForgotPassword}>
         <Pressable onPress={() => {

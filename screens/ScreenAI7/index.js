@@ -1,3 +1,4 @@
+import { Pressable } from "react-native";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Button, TextInput, FlatList } from "react-native";
 
@@ -16,8 +17,8 @@ const SiteItem = ({
   location,
   onPress
 }) => <TouchableOpacity style={styles.siteItem} onPress={onPress}>
-    <Text style={styles.siteName}>{name}</Text>
-    <Text style={styles.siteLocation}>{location}</Text>
+    <Pressable><Text style={styles.siteName}>{name}</Text></Pressable>
+    <Pressable><Text style={styles.siteLocation}>{location}</Text></Pressable>
   </TouchableOpacity>;
 
 const App = () => {
