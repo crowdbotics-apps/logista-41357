@@ -1,3 +1,5 @@
+import { useNavigation } from "@react-navigation/native";
+import { Pressable } from "react-native";
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 const usersData = [{
@@ -17,6 +19,7 @@ const usersData = [{
 }];
 
 const UserScreen = () => {
+  const navigation = useNavigation();
   const [users, setUsers] = useState(usersData);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('');
@@ -49,7 +52,9 @@ const UserScreen = () => {
           </View>} keyExtractor={item => item.id.toString()} />
       <View style={styles.footer}>
         <TouchableOpacity style={styles.createButton}>
-          <Text style={styles.buttonText}>Create a new account</Text>
+          <Pressable onPress={() => {
+          navigation.navigate("ScreenAI11");
+        }}><Text style={styles.buttonText}>Create a new account</Text></Pressable>
         </TouchableOpacity>
         <TouchableOpacity style={styles.editButton}>
           <Text style={styles.buttonText}>Edit</Text>
