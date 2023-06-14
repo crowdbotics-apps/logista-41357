@@ -1,7 +1,11 @@
+import { useNavigation } from "@react-navigation/native";
+import { Pressable } from "react-native";
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Linking, Image } from 'react-native';
 
 const AppInfoScreen = () => {
+  const navigation = useNavigation();
+
   const handleLogin = () => {// Handle login logic here
   };
 
@@ -14,7 +18,9 @@ const AppInfoScreen = () => {
         This is a brief description of the app and its features.
       </Text>
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.loginButtonText}>Log In</Text>
+        <Pressable onPress={() => {
+        navigation.navigate("ScreenAI3");
+      }}><Text style={styles.loginButtonText}>Log In</Text></Pressable>
       </TouchableOpacity>
       <View style={styles.linksContainer}>
         <Text style={styles.linkText} onPress={() => Linking.openURL('https://www.example.com/terms')}>
