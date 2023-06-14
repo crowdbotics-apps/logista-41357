@@ -7,9 +7,9 @@ const Tab = ({
   isActive,
   onPress
 }) => <TouchableOpacity style={[styles.tab, isActive && styles.activeTab]} onPress={onPress}>
-    <Text style={[styles.tabText, isActive && styles.activeTabText]}>
+    <Pressable><Text style={[styles.tabText, isActive && styles.activeTabText]}>
       {title}
-    </Text>
+    </Text></Pressable>
   </TouchableOpacity>;
 
 const SiteItem = ({
