@@ -1,3 +1,5 @@
+import { useNavigation } from "@react-navigation/native";
+import { Pressable } from "react-native";
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, TextInput, Image } from 'react-native';
 const records = [{
@@ -21,6 +23,7 @@ const records = [{
 }];
 
 const RecordScreen = () => {
+  const navigation = useNavigation();
   const [search, setSearch] = useState('');
 
   const deleteRecord = id => {
@@ -41,7 +44,9 @@ const RecordScreen = () => {
       </TouchableOpacity>
     </View>;
 
-  return <View style={styles.container}>
+  return <Pressable onPress={() => {
+    navigation.navigate("ScreenAI15");
+  }}><View style={styles.container}>
       <TextInput style={styles.searchBar} onChangeText={setSearch} value={search} placeholder="Search" />
       <FlatList data={records} renderItem={renderItem} keyExtractor={item => item.id} />
       <View style={styles.buttonsContainer}>
@@ -55,10 +60,12 @@ const RecordScreen = () => {
           <Text style={styles.buttonText}>View Inventory</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Manage</Text>
+          <Pressable onPress={() => {
+            navigation.navigate("ScreenAI14");
+          }}><Text style={styles.buttonText}>Manage</Text></Pressable>
         </TouchableOpacity>
       </View>
-    </View>;
+    </View></Pressable>;
 };
 
 const styles = StyleSheet.create({
