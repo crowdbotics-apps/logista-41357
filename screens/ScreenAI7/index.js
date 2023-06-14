@@ -1,15 +1,17 @@
 import { Pressable } from "react-native";
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Button, TextInput, FlatList } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Button, TextInput, FlatList, Image } from "react-native";
 
 const Tab = ({
   title,
   isActive,
   onPress
 }) => <TouchableOpacity style={[styles.tab, isActive && styles.activeTab]} onPress={onPress}>
-    <Pressable><Text style={[styles.tabText, isActive && styles.activeTabText]}>
-      {title}
-    </Text></Pressable>
+    <Pressable>
+      <Text style={[styles.tabText, isActive && styles.activeTabText]}>
+        {title}
+      </Text>
+    </Pressable>
   </TouchableOpacity>;
 
 const SiteItem = ({
@@ -17,8 +19,12 @@ const SiteItem = ({
   location,
   onPress
 }) => <TouchableOpacity style={styles.siteItem} onPress={onPress}>
-    <Pressable><Text style={styles.siteName}>{name}</Text></Pressable>
-    <Pressable><Text style={styles.siteLocation}>{location}</Text></Pressable>
+    <Pressable>
+      <Text style={styles.siteName}>{name}</Text>
+    </Pressable>
+    <Pressable>
+      <Text style={styles.siteLocation}>{location}</Text>
+    </Pressable>
   </TouchableOpacity>;
 
 const App = () => {
@@ -72,6 +78,9 @@ const App = () => {
             <Button title="Previous" onPress={() => alert("Previous page")} />
             <Button title="Next" onPress={() => alert("Next page")} />
           </View>
+          <TouchableOpacity style={styles.notificationIcon} onPress={() => alert("Notification clicked")}>
+            <Image source={require("./path/to/notification/icon.png")} style={styles.iconImage} />
+          </TouchableOpacity>
         </View>}
       <View style={styles.buttonContainer}>
         <Button title="New account" onPress={() => alert("New account")} />
@@ -154,6 +163,15 @@ const styles = StyleSheet.create({
   buttonContainer: {
     paddingHorizontal: 16,
     paddingBottom: 16
+  },
+  notificationIcon: {
+    position: "absolute",
+    top: 8,
+    right: 16
+  },
+  iconImage: {
+    width: 24,
+    height: 24
   }
 });
 export default App;
