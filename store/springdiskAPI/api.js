@@ -9,13 +9,13 @@ function api_docs_schema_retrieve(payload) {
   })
 }
 function api_v1_login_create(payload) {
-  return springdiskAPI.post(`/api/v1/login/`, payload.data)
+  return springdiskAPI.post(`/api/v1/login/`, payload)
 }
 function api_v1_signup_create(payload) {
-  return springdiskAPI.post(`/api/v1/signup/`, payload.data)
+  return springdiskAPI.post(`/api/v1/signup/`, payload)
 }
 function rest_auth_login_create(payload) {
-  return springdiskAPI.post(`/rest-auth/login/`, payload.data)
+  return springdiskAPI.post(`/rest-auth/login/`, payload)
 }
 function rest_auth_logout_retrieve(payload) {
   return springdiskAPI.get(`/rest-auth/logout/`)
@@ -24,31 +24,28 @@ function rest_auth_logout_create(payload) {
   return springdiskAPI.post(`/rest-auth/logout/`)
 }
 function rest_auth_password_change_create(payload) {
-  return springdiskAPI.post(`/rest-auth/password/change/`, payload.data)
+  return springdiskAPI.post(`/rest-auth/password/change/`, payload)
 }
 function rest_auth_password_reset_create(payload) {
-  return springdiskAPI.post(`/rest-auth/password/reset/`, payload.data)
+  return springdiskAPI.post(`/rest-auth/password/reset/`, payload)
 }
 function rest_auth_password_reset_confirm_create(payload) {
-  return springdiskAPI.post(`/rest-auth/password/reset/confirm/`, payload.data)
+  return springdiskAPI.post(`/rest-auth/password/reset/confirm/`, payload)
 }
 function rest_auth_registration_create(payload) {
-  return springdiskAPI.post(`/rest-auth/registration/`, payload.data)
+  return springdiskAPI.post(`/rest-auth/registration/`, payload)
 }
 function rest_auth_registration_verify_email_create(payload) {
-  return springdiskAPI.post(
-    `/rest-auth/registration/verify-email/`,
-    payload.data
-  )
+  return springdiskAPI.post(`/rest-auth/registration/verify-email/`, payload)
 }
 function rest_auth_user_retrieve(payload) {
   return springdiskAPI.get(`/rest-auth/user/`)
 }
 function rest_auth_user_update(payload) {
-  return springdiskAPI.put(`/rest-auth/user/`, payload.data)
+  return springdiskAPI.put(`/rest-auth/user/`, payload)
 }
 function rest_auth_user_partial_update(payload) {
-  return springdiskAPI.patch(`/rest-auth/user/`, payload.data)
+  return springdiskAPI.patch(`/rest-auth/user/`, payload)
 }
 export const apiService = {
   api_docs_schema_retrieve,

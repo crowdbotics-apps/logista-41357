@@ -19,41 +19,42 @@ const signupsSlice = createSlice({
   name: "signups",
   initialState,
   reducers: {},
-  extraReducers: {
-    [api_v1_signup_create.pending]: (state, action) => {
-      if (state.api.loading === "idle") {
-        state.api.loading = "pending"
-      }
-    },
-    [api_v1_signup_create.fulfilled]: (state, action) => {
-      if (state.api.loading === "pending") {
-        state.entities.push(action.payload)
-        state.api.loading = "idle"
-      }
-    },
-    [api_v1_signup_create.rejected]: (state, action) => {
-      if (state.api.loading === "pending") {
-        state.api.error = action.error
-        state.api.loading = "idle"
-      }
-    },
-    [rest_auth_registration_create.pending]: (state, action) => {
-      if (state.api.loading === "idle") {
-        state.api.loading = "pending"
-      }
-    },
-    [rest_auth_registration_create.fulfilled]: (state, action) => {
-      if (state.api.loading === "pending") {
-        state.entities.push(action.payload)
-        state.api.loading = "idle"
-      }
-    },
-    [rest_auth_registration_create.rejected]: (state, action) => {
-      if (state.api.loading === "pending") {
-        state.api.error = action.error
-        state.api.loading = "idle"
-      }
-    }
+  extraReducers: builder => {
+    builder
+      .addCase(api_v1_signup_create.pending, (state, action) => {
+        if (state.api.loading === "idle") {
+          state.api.loading = "pending"
+        }
+      })
+      .addCase(api_v1_signup_create.fulfilled, (state, action) => {
+        if (state.api.loading === "pending") {
+          state.entities.push(action.payload)
+          state.api.loading = "idle"
+        }
+      })
+      .addCase(api_v1_signup_create.rejected, (state, action) => {
+        if (state.api.loading === "pending") {
+          state.api.error = action.error
+          state.api.loading = "idle"
+        }
+      })
+      .addCase(rest_auth_registration_create.pending, (state, action) => {
+        if (state.api.loading === "idle") {
+          state.api.loading = "pending"
+        }
+      })
+      .addCase(rest_auth_registration_create.fulfilled, (state, action) => {
+        if (state.api.loading === "pending") {
+          state.entities.push(action.payload)
+          state.api.loading = "idle"
+        }
+      })
+      .addCase(rest_auth_registration_create.rejected, (state, action) => {
+        if (state.api.loading === "pending") {
+          state.api.error = action.error
+          state.api.loading = "idle"
+        }
+      })
   }
 })
 export default {
